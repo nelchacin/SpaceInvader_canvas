@@ -26,7 +26,7 @@ class Player {
     }
 
     draw() {
-        ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+        // ctx.fillRect(this.position.x, this.position.y, this.width, this.height) //black square ship
         ctx.save()
         ctx.globalAlpha = this.opacity
         ctx.translate(

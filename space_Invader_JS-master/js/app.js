@@ -87,6 +87,7 @@ function animate() {
             invaderProjectile.update()
         };
 
+        // projectile hits player, create explosion, explosion removes
         if (invaderProjectile.position.y + invaderProjectile.height >= player.position.y &&
             invaderProjectile.position.x + invaderProjectile.width >= player.position.x &&
             invaderProjectile.position.x <= player.position.x + player.width) {  
@@ -129,7 +130,7 @@ function animate() {
     grids.forEach((grid, gridIndex) => {
         grid.update();
 
-        
+        // spawning projectiles
         if (frames % 100 === 0 && grid.invaders.length > 0) {
             grid.invaders[Math.floor(Math.random() * grid.invaders.length)].shoot(invaderProjectiles)
         }
@@ -137,7 +138,7 @@ function animate() {
         grid.invaders.forEach((invader, i) => {
             invader.update({ velocity: grid.velocity })
 
-
+            // projectiles hit enemy
             projectiles.forEach((projectile, j) => {
                 if (projectile.position.y - projectile.radius <= invader.position.y + invader.height &&
                     projectile.position.x + projectile.radius >= invader.position.x &&
@@ -149,7 +150,7 @@ function animate() {
                         const invaderFound = grid.invaders.find(invader2 => invader2 === invader)
                         const projectileFound = projectiles.find(projectile2 => projectile2 === projectile)
 
-                    
+                        // remove invader and projectile
                         if (invaderFound && projectileFound) {
                             score += 100
                             scoreElement.innerHTML = score
@@ -189,6 +190,7 @@ function animate() {
         player.rotation = 0;
     }
 
+    // spawning enemies
     if (frames % randomInterval === 0) {
         grids.push(new Grid());
         randomInterval = Math.floor(Math.random() * 500 + 500);

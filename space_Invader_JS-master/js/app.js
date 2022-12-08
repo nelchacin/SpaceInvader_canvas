@@ -2,10 +2,14 @@ const scoreElement = document.querySelector('#scoreElement')
 const ending = document.querySelector('#ending')
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
+let refresh = document.getElementById('refresh');
 
 
 
-canvas.width = 650
+
+
+
+canvas.width = 900
 canvas.height = 650
 
 
@@ -103,6 +107,7 @@ function animate() {
                 game.active = false;
                 console.log("game over")
                 ending.style.display = 'block'
+                refresh.style.display='block'
             }, 2000)
 
             createParticles({
@@ -240,4 +245,7 @@ window.addEventListener('keyup', ({ key }) => {
         case ' ':
             break;
     }
+})
+refresh.addEventListener('click', _ => {
+    location.reload();
 })
